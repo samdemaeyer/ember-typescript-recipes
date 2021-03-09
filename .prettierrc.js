@@ -1,5 +1,6 @@
-'use strict';
+'use strict'
 
 module.exports = {
-  singleQuote: true,
-};
+  singleQuote: false,
+  semi: false,
+}

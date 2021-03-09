@@ -1,25 +1,22 @@
-'use strict';
+'use strict'
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    ecmaFeatures: {
-      legacyDecorators: true,
-    },
-  },
-  plugins: ['ember'],
+  parser: '@typescript-eslint/parser',
+  plugins: ['ember', '@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
     'plugin:prettier/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
   env: {
     browser: true,
   },
-  rules: {},
+  rules: {
+    semi: [2, 'never'],
+  },
   overrides: [
     // node files
     {
@@ -49,5 +46,11 @@ module.exports = {
         'node/no-unpublished-require': 'off',
       },
     },
+    {
+      files: ['*.js'],
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': 0,
+      },
+    },
   ],
-};
+}
