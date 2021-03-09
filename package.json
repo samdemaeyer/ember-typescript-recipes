@@ -1,8 +1,8 @@
 {
-  "name": "ember-typescript-recipes",
+  "name": "typescript-recipes",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for ember-typescript-recipes goes here",
+  "description": "Small description for typescript-recipes goes here",
   "repository": "",
   "license": "MIT",
   "author": "",
@@ -11,6 +11,7 @@
     "test": "tests"
   },
   "scripts": {
+    "preinstall": "ln -fs $(pwd)/pre-commit .git/hooks/",
     "build": "ember build --environment=production",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel 'lint:!(fix)'",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.2.0",
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "@glimmer/component": "^1.0.3",
     "@glimmer/tracking": "^1.0.3",
     "@types/ember": "^3.16.4",
@@ -76,6 +78,7 @@
     "ember-data": "~3.25.0",
     "ember-export-application-global": "^2.0.1",
     "ember-fetch": "^8.0.4",
+    "ember-froala-editor": "^3.2.6",
     "ember-load-initializers": "^2.1.2",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-page-title": "^6.2.1",

@@ -1,0 +1,69 @@
+<p class="text-center mb-4 content-container">
+  Browse all the recipes here, select a category or search for an ingredient.
+</p>
+
+<div class="row mb-4 text-center">
+  <div class="col">
+    <CategoryLink @category='speedy' @selected={{this.category}} />
+  </div>
+
+  <div class="col">
+    <CategoryLink @category='slow' @selected={{this.category}} />
+  </div>
+
+  <div class="col">
+    <CategoryLink @category='side' @selected={{this.category}} />
+  </div>
+
+  <div class="col">
+    <CategoryLink @category='small' @selected={{this.category}} />
+  </div>
+
+  <div class="col">
+    <CategoryLink @category='sweet' @selected={{this.category}} />
+  </div>
+</div>
+
+<div class='d-flex justify-content-center mb-4'>
+  <form>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="search"
+        placeholder="Search recipes"
+        {{on 'input' (perform this.debounceSearch)}}
+        value={{this.search}}
+      >
+    </div>
+  </form>
+</div>
+
+<div class="row">
+  {{#each @model as |recipe|}}
+    <div class="col-12 col-sm-6 col-lg-4 mb-4 d-flex">
+      <div class="card">
+        <LinkTo @route="recipe.show" @model={{recipe.id}}>
+          <img src={{recipe.image}} class="card-img-top" alt={{recipe.title}}>
+        </LinkTo>
+
+        <div class="card-body">
+          <LinkTo class="h6 text-uppercase mb-2" @route="recipe.show" @model={{recipe.id}}>
+            {{recipe.title}}
+          </LinkTo>
+
+          <button
+            type="button"
+            class="favourite"
+            {{on "click" (fn this.toggleFavourite recipe)}}
+          >
+            <i class="{{if recipe.isFavourite 'fas' 'far'}} fa-heart"></i>
+          </button>
+          <p class="card-text">{{recipe.description}}</p>
+
+          <StarRating @rating={{recipe.rating}} />
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>

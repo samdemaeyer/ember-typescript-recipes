@@ -1,0 +1,128 @@
+<h4 class="mb-2 text-secondary">{{@title}}</h4>
+
+<div class="p-4 card bg-light">
+  <form {{on "submit" @submitAction}}>
+    <div class="mb-4 form-row">
+      <div class="col-9">
+        <label for="title">Title</label>
+        <input
+          id="title"
+          type="text"
+          class="form-control"
+          placeholder="Recipe title..."
+          value={{@recipe.title}}
+          {{on 'input' (fn this.mutateValue 'title')}}
+          required
+        />
+      </div>
+
+      <div class="col-3">
+        <label for="serves">Serves</label>
+        <input
+          id="serves"
+          type="text"
+          class="form-control"
+          placeholder="Recipe serves..."
+          value={{@recipe.recipeDetail.serves}}
+          {{on 'input' (fn this.mutateValue 'recipeDetail.serves')}}
+          required
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Categories</label>
+      <select class="form-control" id="category" {{on 'change' (fn this.mutateValue 'category')}} required>
+        <option value="" selected={{not @recipe.category}} disabled>Please select a category</option>
+        <option value="speedy" selected={{eq @recipe.category 'speedy'}}>Speedy</option>
+        <option value="slow" selected={{eq @recipe.category 'slow'}}>Slow</option>
+        <option value="side" selected={{eq @recipe.category 'side'}}>Side</option>
+        <option value="small" selected={{eq @recipe.category 'small'}}>Small</option>
+        <option value="sweet" selected={{eq @recipe.category 'sweet'}}>Sweet</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="short-description">Short description</label>
+      <textarea
+        class="form-control"
+        id="short-description"
+        placeholder="Recipe short description..."
+        value={{@recipe.description}}
+        {{on 'input' (fn this.mutateValue 'description')}}
+        required
+      ></textarea>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span for="image" class="input-group-text">Image</span>
+      </div>
+      <div class="custom-file">
+        <input
+          type="file"
+          accept="image/*"
+          class="custom-file-input"
+          id="image"
+          {{on 'change' this.uploadImage}}
+        />
+        <label class="custom-file-label" for="image">{{this.imageLabel}}</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Full description</label>
+      <FroalaEditor
+        @content={{html-safe @recipe.recipeDetail.description}}
+        @update={{fn (mut @recipe.recipeDetail.description)}}
+      />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col col-md-3">
+        <label for="ingredients">Ingredients</label>
+        {{#each @recipe.recipeDetail.ingredients as |ingredient i|}}
+          <input
+            class="form-control mb-4"
+            placeholder="Ingredient #{{i}}"
+            type="text"
+            id="ingredients"
+            value={{ingredient}}
+            {{on 'input' (fn this.mutateArray 'ingredients' i )}}
+            required={{lte i '1'}}
+          />
+          {{#if (eq-increment @recipe.recipeDetail.ingredients.length i)}}
+            <a href="#" aria-role="button" role="button" {{on "click" (fn this.addNewInput 'ingredients')}}>
+              <u>+ Add new ingredient</u>
+            </a>
+          {{/if}}
+        {{/each}}
+
+      </div>
+
+      <div class="form-group col col-md-9">
+        <label for="preparation-steps">Preparation Steps</label>
+        {{#each @recipe.recipeDetail.preparationSteps as |step i|}}
+          <textarea
+            class="form-control mb-4"
+            placeholder="Preparation step #{{i}}"
+            type="text"
+            id="preparation-steps"
+            value={{step}}
+            {{on 'input' (fn this.mutateArray 'preparationSteps' i )}}
+            required={{lte i '1'}}
+          ></textarea>
+
+          {{#if (eq-increment @recipe.recipeDetail.preparationSteps.length i)}}
+            <a href="#" aria-role="button" role="button" {{on "click" (fn this.addNewInput 'preparationSteps')}}>
+              <u>+ Add new preparation step</u>
+            </a>
+          {{/if}}
+        {{/each}}
+
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit recipe</button>
+  </form>
+</div>

@@ -21,13 +21,13 @@
     "module": "es6",
     "experimentalDecorators": true,
     "paths": {
-      "ember-typescript-recipes/tests/*": [
+      "typescript-recipes/tests/*": [
         "tests/*"
       ],
-      "ember-typescript-recipes/mirage/*": [
+      "typescript-recipes/mirage/*": [
         "mirage/*"
       ],
-      "ember-typescript-recipes/*": [
+      "typescript-recipes/*": [
         "app/*"
       ],
       "*": [

@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
   let ENV = {
-    modulePrefix: 'ember-typescript-recipes',
+    modulePrefix: 'typescript-recipes',
     environment,
     rootURL: '/',
     locationType: 'auto',

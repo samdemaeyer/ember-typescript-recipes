@@ -1,0 +1,38 @@
+<h2 class="text-secondary text-center text-uppercase mt-4">{{@model.title}}</h2>
+
+<p class="content-container text-center">{{@model.description}}</p>
+
+<div class="text-center my-4">
+  <img src={{@model.recipeDetail.image}} alt={{@model.title}}>
+</div>
+
+<div class="content-container border-bottom pb-4">{{this.description}}</div>
+
+<h6 class="text-secondary text-uppercase my-4 pt-4">{{@model.title}}</h6>
+
+<div class="row">
+  <div class="col-12 col-md-4">
+    <p class="font-italic"> Serves: {{@model.recipeDetail.serves}}</p>
+    <ul class="list-unstyled">
+      {{#each @model.recipeDetail.ingredients as |ingredient|}}
+        <li class="font-weight-bold">{{ingredient}}</li>
+      {{/each}}
+    </ul>
+    {{#if @model.recipeDetail.subRecipeDetail}}
+    <p class="font-italic">
+      For the {{ @model.recipeDetail.subRecipeDetail.title}}
+    </p>
+    <ul class='list-unstyled'>
+      {{#each @model.recipeDetail.subRecipeDetail.ingredients as |ingredient| }}
+        <li class="font-weight-bold">{{ingredient}}</li>
+      {{/each}}
+    </ul>
+    {{/if}}
+  </div>
+
+  <div class="col-12 col-md-8">
+    {{#each @model.recipeDetail.preparationSteps as |step|}}
+      <p>{{step}}</p>
+    {{/each}}
+  </div>
+</div>

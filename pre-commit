@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+git diff --name-only --cached --diff-filter=ACMRTB | grep '.js$' | (grep . || echo app/app.js) | xargs ./node_modules/.bin/eslint
+git diff --name-only --cached --diff-filter=ACMRTB | grep '.hbs$' | (grep . || echo app/application/template.hbs) | xargs ./node_modules/.bin/ember-template-lint --verbose

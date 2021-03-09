@@ -1,3 +1,19 @@
 {{page-title "Ember Typescript Recipes"}}
 
-{{outlet}}
+<div class="container">
+
+  <nav class="d-flex justify-content-center">
+    <LinkTo @route="index" @query={{hash category=null search=''}} class="h1 text-primary my-4">
+      Sam's Recipes
+    </LinkTo>
+  </nav>
+
+  {{#if (eq this.currentRouteName 'recipe.show.index')}}
+    <LinkTo @route="recipe.show.edit" class="banner text-white">Edit Recipe</LinkTo>
+  {{else if (not-eq this.currentRouteName "recipe.create")}}
+    <LinkTo @route="recipe.create" class="banner text-white">Create Recipe</LinkTo>
+  {{/if}}
+
+  {{outlet}}
+
+</div>

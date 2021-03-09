@@ -8,6 +8,28 @@ module.exports = function (defaults) {
     // Add options here
   })
 
+  app.import('node_modules/@fortawesome/fontawesome-free/css/all.css')
+  app.import(
+    'node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2',
+    { destDir: 'webfonts' }
+  )
+  app.import(
+    'node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2',
+    { destDir: 'webfonts' }
+  )
+  app.import(
+    'node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf',
+    { destDir: 'webfonts' }
+  )
+  app.import(
+    'node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg',
+    { destDir: 'webfonts' }
+  )
+  app.import(
+    'node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff',
+    { destDir: 'webfonts' }
+  )
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //

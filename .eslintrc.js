@@ -16,6 +16,7 @@ module.exports = {
   },
   rules: {
     semi: [2, 'never'],
+    'ember/use-ember-data-rfc-395-imports': 0,
   },
   overrides: [
     // node files
